@@ -3,7 +3,6 @@ from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware  # Add this import
 
 app = FastAPI()
-
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
@@ -12,6 +11,14 @@ app.add_middleware(
     allow_methods=["*"],  # Allows all methods
     allow_headers=["*"],  # Allows all headers
 )
+
+@app.get("/")
+def root():
+    return JSONResponse({"test":True})
+
+@app.post("/")
+def message():
+    return JSONResponse({"got_data":True,"message":"we have got your data, we will respond in 1 to 3 buisness days")
 
 users = {}
 original_messages = []
