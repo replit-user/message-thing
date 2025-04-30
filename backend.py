@@ -66,3 +66,14 @@ def redeem_message(username: str = Body(...)):
     users[username]["points"] -= 100
     users[username]["messages"] += 1
     return JSONResponse(content={"success": True}, status_code=200)
+
+@app.get("/points/{username}")
+def get_points(username: str):
+    if username not in users:
+        return JSONResponse(content={"success": False}, status_code=401)
+    return JSONResponse(content={"points": users[username]["points"]}, status_code=200)
+@app.get("/messages_left/{username}")
+def get_messages_left(username: str):
+    if username not in users:
+        return JSONResponse(content={"success": False}, status_code=401)
+    return JSONResponse(content={"messages_left": users[username]["messages"]}, status_code=200)
