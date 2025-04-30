@@ -18,7 +18,10 @@ def root():
 
 @app.post("/")
 def message():
-    return JSONResponse({"got_data":True,"message":"we have got your data, we will respond in 1 to 3 buisness days")
+    return JSONResponse({
+        "got_data": True,
+        "message": "we have got your data, we will respond in 1 to 3 business days"
+    })
 
 users = {}
 original_messages = []
